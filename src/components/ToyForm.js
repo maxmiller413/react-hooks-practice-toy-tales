@@ -2,9 +2,20 @@ import React, { useState } from "react";
 
 function ToyForm({handleSetAddToy}) {
 
-  const [name, setName] = useState("")
-  const [image, setImage] = useState("")
-  
+  // const [name, setName] = useState("")
+  // const [image, setImage] = useState("")
+
+  const [formData, setFormData] = useState({
+    name: "",
+    image: "",
+  })
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   // *** ABSTRACTED ON LINE 25 ***
   // function handleNameChange(event){
@@ -12,11 +23,12 @@ function ToyForm({handleSetAddToy}) {
   // }
   function handleSubmit(event){
     event.preventDefault()
+
     const updatedToyObj = {
-      name: name,
-      image: image,
-      likes: 0
+     ...formData,
+     likes: 0,
     }
+
     fetch("http://localhost:3001/toys", {
       method: "POST",
       headers: {
@@ -28,7 +40,7 @@ function ToyForm({handleSetAddToy}) {
       .then(handleSetAddToy)
   }
   
-  console.log(name)
+
 
   return (
     <div className="container">
@@ -39,8 +51,8 @@ function ToyForm({handleSetAddToy}) {
           name="name"
           placeholder="Enter a toy's name..."
           className="input-text"
-          value={name}
-          onChange={event => setName(event.target.value)}
+          value={formData.name}
+          onChange={handleChange}
         />
         <br />
         <input
@@ -48,8 +60,8 @@ function ToyForm({handleSetAddToy}) {
           name="image"
           placeholder="Enter a toy's image URL..."
           className="input-text"
-          value={image}
-          onChange={event => setImage(event.target.value)}
+          value={formData.image}
+          onChange={handleChange}
         />
         <br />
         <input

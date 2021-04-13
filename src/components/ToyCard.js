@@ -11,6 +11,7 @@ function ToyCard({ toy, onDeleteToy, onLikeUpdateToy }) {
       .then(() => {
         onDeleteToy(toy);
       });
+      
   }
 // object: { likes: 10 })
   function handleLikeClick() {
@@ -26,7 +27,6 @@ function ToyCard({ toy, onDeleteToy, onLikeUpdateToy }) {
     })
       .then(r => r.json())
       .then(data => onLikeUpdateToy(data))
-      
   }
 
   return (

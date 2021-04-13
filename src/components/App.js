@@ -52,7 +52,8 @@ function App() {
 
 export default App;
 
-// 1)  make a GET request to /toys to fetch the toy array. 
+// 1)  make useState for toy/setToy
+// make a GET request to /toys to fetch the toy array. 
 // -state (useState & useEffect)
 // 2) useEffect -> fetch -> setState
 // 3) passed toys to toyContainer as prop and mapped over to provided upDatedToys and props for card to render
